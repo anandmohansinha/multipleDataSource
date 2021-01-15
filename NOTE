@@ -1,0 +1,70 @@
+Issues:
+=======
+Failed to configure a DataSource
+: 'url' attribute is not specified and no embedded datasource could be configured.
+Reason: Failed to determine a suitable driver class
+
+Solution:
+---------
+Since you have added both mongodb and data-jpa dependencies in your pom.xml file
+, it was creating a dependency conflict like below
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-mongodb</artifactId>
+        </dependency>
+
+            OR
+  If you added dependency in pom.xml file and does not provided any property related to database to create datasource.
+
+
+--------------------------------------------------------------------------------------------------------
+Problem 2:
+==============
+If you have two database configured in pom.xml and if you depends on auto configuration then you will get exception
+
+ You will get exception Failed to configure a DataSource: 'url' attribute is not specified and no embedded datasource could be configured.
+
+
+
+--------------------------------------------------------------------------------------------------------
+
+
+
+
+Problem 3:
+=======
+Parameter 1 of constructor in org.springframework.boot.autoconfigure.jdbc.DataSourceInitializerInvoker
+ required a single bean, but 3 were found:
+ - firstDsProperties: defined by method 'firstDsProperties' in class path resource [com/java/jpa/config/FirstDataSource.class]
+ - mongodbProperties: defined by method 'mongodbProperties' in class path resource [com/java/jpa/config/MongoDBDataSource.class]
+ - spring.datasource-org.springframework.boot.autoconfigure.jdbc.DataSourceProperties: defined in null
+
+
+ Solution:
+ --------
+
+--------------------------------------------------------------------------------------------------------------
+
+ Problem 4:
+ ===========
+ org.springframework.core.convert.ConverterNotFoundException: No converter found capable of converting from type [org.bson.types.ObjectId] to type [java.lang.Integer]
+
+ Solution 1:
+ ----------
+ change Integer id to ObjectId in Patient.java
+
+    @Id
+    Integer id;
+     to
+
+     @Id
+     ObjectId id;
+
+
+  Solution 2:
+  ------------

@@ -1,0 +1,11 @@
+STEP 1:
+    Add database related properties so that spring data jpa can create datasource.
+
+
+
+
+NOTE:
+Spring Boot auto-configuration tries to configure the beans automatically based on the dependencies
+ added to the classpath. Since you have the JPA dependency on your classpath, Spring Boot tries to
+ automatically configure a JPA DataSource. The problem is, you haven’t given Spring the complete
+  information it needs to perform the auto-configuration.

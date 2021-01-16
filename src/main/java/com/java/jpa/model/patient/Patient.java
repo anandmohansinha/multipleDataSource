@@ -6,8 +6,11 @@ import lombok.NoArgsConstructor;
 import org.bson.types.ObjectId;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Transient;
+import java.util.Set;
 
 @Data
 @NoArgsConstructor
@@ -21,7 +24,8 @@ public class Patient {
     String name;
     String email;
     Long phone;
+    @OneToMany(mappedBy = "patient", cascade = CascadeType.ALL)
+    Set<Address> address;
 
-    //Address address;
 
 }

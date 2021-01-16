@@ -8,6 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PatientService {
@@ -23,5 +24,12 @@ public class PatientService {
         patientRepository.save(patient);
     }
 
+    public Patient updatePatient( String name, int id){
+        Optional<Patient> patient = patientRepository.findById(id);
+        Patient p = patient.get();
+        p.setName(name);
+        Patient savedPatient = patientRepository.save(p);
+        return savedPatient;
+    }
 
 }

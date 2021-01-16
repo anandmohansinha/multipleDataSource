@@ -16,10 +16,11 @@ import javax.persistence.Id;
 public class Doctor {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
 
     private String name;
     private String speciality;
+    private float experince;
 
 }

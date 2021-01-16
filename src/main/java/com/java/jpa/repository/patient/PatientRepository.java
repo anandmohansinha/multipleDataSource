@@ -10,10 +10,8 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface PatientRepository extends MongoRepository<Patient, Integer> {
 
-  /*  @Modifying
-    @Query("update Patient p set p.name = ?1 where p.id= ?2")
-    public Patient updateName(String name, Integer id);
-   */
+
+
 
     /*@Modifying
     @Query("Update Patient p SET p.name=:name WHERE p.id=:id")

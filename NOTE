@@ -68,3 +68,30 @@ Parameter 1 of constructor in org.springframework.boot.autoconfigure.jdbc.DataSo
 
   Solution 2:
   ------------
+
+
+---------------------------------------------------------------------------------------
+Problem: 5
+org.springframework.data.mapping.PropertyReferenceException: No property updateName found for type Patient!
+
+in mongodb we have to write update query using Save() method
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ Optional<Patient> patient = patientRepository.findById(id);
+        Patient p = patient.get();
+        p.setName(name);
+        Patient savedPatient = patientRepository.save(p);
+        return savedPatient;
+
+ In Jpa we have to write update query using @Modify and @Query annotation
+
+  @Modifying
+     @Query("update Doctor d set d.name = ?1 where d.id = ?2")
+     void setNameById(String name, int id);
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+Problem: 6
+javax.persistence.TransactionRequiredException: Executing an update/delete query

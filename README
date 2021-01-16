@@ -1,3 +1,14 @@
+important Url
+---------------
+https://github.com/spring-projects/spring-data-jpa/blob/master/src/main/asciidoc/jpa.adoc
+
+Spring Data MongoRepository Update
+=====================================
+The MongoRepository provides save() and saveAll() methods to update the entities.
+ If entities are already available in collection in Mongo database,
+ then they will be updated otherwise they will be inserted as new entities.
+
+
 STEP 1:
     Add database related properties so that spring data jpa can create datasource.
 
@@ -9,3 +20,24 @@ Spring Boot auto-configuration tries to configure the beans automatically based 
  added to the classpath. Since you have the JPA dependency on your classpath, Spring Boot tries to
  automatically configure a JPA DataSource. The problem is, you haven’t given Spring the complete
   information it needs to perform the auto-configuration.
+
+
+
+  API call
+  ===========
+  1. http://localhost:9090/save  POST
+       {
+           "name": "anup",
+           "email": "anup@gmail.com",
+           "phone": 989898989,
+           "address":[
+                {"houseNo": "444D","street":"vijay nagar","city":"bangalore", "state":"Karnataka"},
+                 {"houseNo": "432D","street":"vijay nagar","city":"bangalore", "state":"Karnataka"}
+           ]
+       }
+  2. http://localhost:9090/saveDoctor  POST
+        {
+            "name":"Dr. Anup",
+            "speciality": "kidney",
+            "experince": 4.5
+        }

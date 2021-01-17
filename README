@@ -9,6 +9,15 @@ The MongoRepository provides save() and saveAll() methods to update the entities
  then they will be updated otherwise they will be inserted as new entities.
 
 
+datasource Properties
+=========================
+ you'll need to add some properties to application.properties with the spring.datasource prefix
+
+
+ JPA transaction can not handle mongodb and Mongo transaction manager can not handle JPA
+ =======================================================================================
+
+
 STEP 1:
     Add database related properties so that spring data jpa can create datasource.
 

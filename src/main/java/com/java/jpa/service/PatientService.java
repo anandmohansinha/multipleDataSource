@@ -32,4 +32,8 @@ public class PatientService {
         return savedPatient;
     }
 
+    public void deletePatient(Integer id){
+        patientRepository.deleteById(id);
+    }
+
 }

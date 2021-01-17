@@ -1,7 +1,9 @@
 package com.java.jpa.controller;
 
+import com.java.jpa.dto.AppointmentDTO;
 import com.java.jpa.model.patient.Address;
 import com.java.jpa.model.patient.Patient;
+import com.java.jpa.service.AppointmentService;
 import com.java.jpa.service.PatientService;
 import com.java.jpa.service.SequenceGenerator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +20,9 @@ public class PatientController {
 
     @Autowired
     PatientService service;
+
+    @Autowired
+    AppointmentService appointmentService;
 
     @Autowired
     private SequenceGenerator sequenceGenerator;
@@ -48,4 +53,19 @@ public class PatientController {
         ResponseEntity<Patient> response = new ResponseEntity(patient, HttpStatus.OK);
         return response;
     }
+
+    @GetMapping("/getAppointment")
+    public ResponseEntity<AppointmentDTO> getAppoitment(){
+        AppointmentDTO appointmentDTO = appointmentService.bookAppointment();
+        ResponseEntity<AppointmentDTO> response = new ResponseEntity<AppointmentDTO>(appointmentDTO, HttpStatus.OK);
+        return response;
+    }
+    @DeleteMapping("/delete/{id}")
+    public ResponseEntity<String> deletePatient(@PathVariable("id") int id){
+
+        service.deletePatient(id);
+        ResponseEntity<String> response = new ResponseEntity<String>("deleted", HttpStatus.OK);
+        return response;
+    }
+
 }
